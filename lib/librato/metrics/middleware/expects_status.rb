@@ -1,9 +1,7 @@
 module Librato
   module Metrics
     module Middleware
-
-      class ExpectsStatus < Faraday::Response::Middleware
-
+      class ExpectsStatus < Faraday::Middleware
         def on_complete(env)
           # TODO: make exception output prettier
           case env[:status]
@@ -21,9 +19,7 @@ module Librato
             raise ServerError.new(env.to_s, env)
           end
         end
-
       end
-
     end
   end
 end
